@@ -481,6 +481,12 @@ def create_energy_figs(pop_dict: dict, spikes_events: dict,
                    c='darkgreen',
                    lw=kargs['mean_lw'],
                    label=pop + ' mean')
+        ax.plot(mult_time[idx_init_atp: idx_fin_atp],
+                np.transpose(atp_stack[pop], (1, 0))[idx_init_atp: idx_fin_atp, :],
+                c='grey',
+                alpha=0.1,
+                lw=0.1,
+                )
         ax.fill_between(mult_time[idx_init_atp: idx_fin_atp],
                            atp_mean[pop][idx_init_atp: idx_fin_atp] - \
                            atp_std[pop][idx_init_atp: idx_fin_atp],
