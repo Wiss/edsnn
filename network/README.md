@@ -15,7 +15,7 @@ network $ python -m multiple_experiments
 
 For loading results and regenerate plots:
 ```bash
-network $ python -m src.load_and_plot -p /path/to/config/file/relative/to/results/folder
+network $ python -m src.load_and_plot_experiment -p /path/to/config/file/relative/to/results/folder
 ```
 
 
