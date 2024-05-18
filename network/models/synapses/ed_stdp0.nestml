@@ -1,0 +1,63 @@
+
+    synapse ed_stdp0:
+
+    state:
+        w real = 1
+    end
+
+    parameters:
+        d ms = 1 ms  @nest::delay   # !!! cannot have a variable called "delay"
+        lambda real = .01
+        tau_tr_pre ms = 20 ms
+        tau_tr_post ms = 20 ms
+        alpha real = 1
+        mu_plus real = 0
+        mu_minus real = 0
+        Wmax real = 100.
+        Wmin real = 0.
+        # energy parameters
+        eta real = 5  # syanpse sensitivity to energy imbalance
+        # if eta=5 => neurons with 80% atp while have max potentiation of lambda/3
+    end
+
+    equations:
+        kernel pre_trace_kernel = exp(-t / tau_tr_pre)
+        inline pre_trace real = convolve(pre_trace_kernel, pre_spikes)
+
+        # all-to-all trace of postsynaptic neuron
+        kernel post_trace_kernel = exp(-t / tau_tr_post)
+        inline post_trace real = convolve(post_trace_kernel, post_spikes)
+    end
+
+    input:
+        pre_spikes nS <- spike
+        post_spikes nS <- spike
+        post_ATP real <- continuous
+    end
+
+    output: spike
+
+    onReceive(post_spikes):
+        # potentiate synapse
+        ATP real = post_ATP/100
+        #energy_factor_ real = (post_ATP/100)**2
+        exponent real = eta * (1 - ATP)
+        energy_factor_ real = exp(-exponent)
+        w_ real = Wmax * (w / Wmax + (energy_factor_ * lambda * (1.0 - (w / Wmax)) ** mu_plus * pre_trace))
+        w = min(Wmax, w_)
+    end
+
+    onReceive(pre_spikes):
+        # depress synapse
+        # no energy-dependence for drepress synapses yet
+        energy_factor_ real = 1 # post_ATP/100
+        w_ real = Wmax * (w / Wmax - (energy_factor_ * alpha * lambda * (w / Wmax) ** mu_minus * post_trace))
+        w = max(Wmin, w_)
+
+        # deliver spike to postsynaptic partner
+        deliver_spike(w, d)
+    end
+
+
+    end
+    
