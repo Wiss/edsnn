@@ -1,4 +1,4 @@
-name: nest_33_ehp_erase
+name: nest_33_ehp
 channels:
   - conda-forge
   - defaults
@@ -242,4 +242,4 @@ dependencies:
       - pyerfa==2.0.1.4
       - sympy==1.12
       - texttable==1.7.0
-prefix: ~/miniconda3/envs/nest_33_ehp_erase
+prefix: ~/miniconda3/envs/nest_33_ehp

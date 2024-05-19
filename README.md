@@ -39,7 +39,7 @@ The results should appear in the `edsnn/network/results/test` folder.
 
 **OBS:** Using this approach, you will not be able to generate new models (its not possible to run `network/neu-syn_cogeneration.py`). 
 
-### for developing new models (more flexible but a harder way)
+### For developing new models (more flexible, but the hard way)
 
 If you want to create your own energy-dependent models, then specific version of nest and nestml are required, In particular:
 
@@ -60,6 +60,9 @@ you can install that specific version by running:
 ``` shell
 pip install https://github.com/nest/nestml/archive/160253c61cad8b3facd2f3cdcd410015dc524c53.zip
 ```
+
+#### GCC
+I used gcc version 9.4.0
 
 ## Citation
 ```
