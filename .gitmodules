@@ -1,0 +1,3 @@
+[submodule "nest-simulator"]
+	path = nest-simulator
+	url = https://github.com/nest/nest-simulator/
