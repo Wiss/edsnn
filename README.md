@@ -18,7 +18,7 @@ and go to the new folder: `cd edsnn`
 2. create a conda environment
 
 ``` shell
-edsnn $ conda env create -f environment.yaml
+edsnn $ conda env create -f environment.yml
 ```
 This would create an environment with all the required packages. To activate the environment do: `conda activate nest_33_ehp`, which activate the environment with the default name given in the environment.yaml file
 

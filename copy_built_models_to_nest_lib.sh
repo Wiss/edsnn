@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-ENV_PATH = ~/miniconda3/envs/nest_33_ehp_erase/lib/nest
-# change the ENV_PATH to your own path
-
-cp network/models/built_models/edlif_* ENV_PATH
+NEST_LIB_PATH="$CONDA_PREFIX"/lib/nest/
+# if neccesary change the NEST_LIB_PATH to your own path
+BUILT_MODEL_PATH="./network/models/built_models/edlif_*"
+cp $BUILT_MODEL_PATH $NEST_LIB_PATH
