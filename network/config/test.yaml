@@ -312,7 +312,7 @@ connections:
       record: False
 network_layout:
   energy_dependent: True
-  n_neurons: 500
+  n_neurons: 20
   ex_in_ratio: 0.8  # n_exc = exc_inh_ratio*n_neurons
   positions:
     dist: "uniform"
